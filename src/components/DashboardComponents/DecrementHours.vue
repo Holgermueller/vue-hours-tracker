@@ -6,11 +6,15 @@
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
-          <v-text-field type="number"></v-text-field>
+          <v-text-field
+            id="hoursToRemove"
+            type="number"
+            v-model="hoursToRemove"
+          ></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn>
+        <v-btn @click.prevent="removeHours" :disabled="tooFewHoursToRemove">
           Remove Hours
         </v-btn>
       </v-card-actions>
@@ -23,7 +27,21 @@ export default {
   name: "DecrementHoursForm",
 
   data() {
-    return {};
+    return {
+      hoursToRemove: 1,
+    };
+  },
+
+  computed: {
+    tooFewHoursToRemove() {
+      return this.hoursToRemove <= 0;
+    },
+  },
+
+  methods: {
+    removeHours() {
+      console.log(this.hoursToRemove);
+    },
   },
 };
 </script>

@@ -6,11 +6,16 @@
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
-          <v-text-field type="number"></v-text-field>
+          <v-text-field type="number" v-model="hoursToAdd"></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn>
+        <v-btn
+          id="addHoursButton"
+          class="add-hours-button"
+          @click.prevent="addHours"
+          :disabled="tooFewHoursToAdd"
+        >
           Add Hours
         </v-btn>
       </v-card-actions>
@@ -23,7 +28,21 @@ export default {
   name: "HoursIncrementForm",
 
   data() {
-    return {};
+    return {
+      hoursToAdd: 1,
+    };
+  },
+
+  computed: {
+    tooFewHoursToAdd() {
+      return this.hoursToAdd <= 0;
+    },
+  },
+
+  methods: {
+    addHours() {
+      console.log(this.hoursToAdd);
+    },
   },
 };
 </script>

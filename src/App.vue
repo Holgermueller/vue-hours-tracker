@@ -2,6 +2,12 @@
   <v-app>
     <v-app-bar app color="primary" dark class="text-center">
       <h1>Hours Tracker</h1>
+
+      <v-spacer></v-spacer>
+
+      <v-btn>
+        Log out
+      </v-btn>
     </v-app-bar>
 
     <v-main>

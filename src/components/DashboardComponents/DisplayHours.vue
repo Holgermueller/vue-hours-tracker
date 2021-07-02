@@ -1,8 +1,22 @@
 <template>
   <div>
-    <h1>
-      Hours will appear here.
-    </h1>
+    <v-card class="hours-card text-center">
+      <v-card-title>
+        <h1>
+          Hello, Name
+        </h1>
+      </v-card-title>
+
+      <v-card-subtitle>
+        <h2>
+          Hours remaining:
+        </h2>
+      </v-card-subtitle>
+
+      <v-card-text>
+        <h1>0</h1>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -12,4 +26,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.hours-card {
+  width: 55%;
+  margin: 2% auto;
+}
+</style>

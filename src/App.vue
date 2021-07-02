@@ -7,6 +7,10 @@
     <v-main>
       <router-view></router-view>
     </v-main>
+
+    <v-footer class="footer text-center">
+      &copy; 2021 Holger Mueller
+    </v-footer>
   </v-app>
 </template>
 
@@ -21,3 +25,5 @@ export default {
   }),
 };
 </script>
+
+<style scoped></style>

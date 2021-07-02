@@ -1,3 +1,7 @@
 <template>
-    <div></div>
+    <div>
+        <h1>
+            Dashboard here
+        </h1>
+    </div>
 </template>

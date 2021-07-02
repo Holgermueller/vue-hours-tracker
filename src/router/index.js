@@ -9,7 +9,7 @@ let router = new VueRouter({
   mode:'history',
   routes:[
     {
-      past:'/', name: 'Home', component: Home
+      path:'/', name: 'Home', component: Home
     },
 
     {

@@ -1,16 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-      class="text-center"
-    >
-      
-
-     <h1>Hours Tracker</h1>
-
-      
+    <v-app-bar app color="primary" dark class="text-center">
+      <h1>Hours Tracker</h1>
     </v-app-bar>
 
     <v-main>
@@ -20,14 +11,10 @@
 </template>
 
 <script>
-
-
 export default {
-  name: 'App',
+  name: "App",
 
-  components: {
-   
-  },
+  components: {},
 
   data: () => ({
     //

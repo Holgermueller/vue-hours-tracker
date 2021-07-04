@@ -5,7 +5,7 @@
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
           type="email"
-          v-model="loginEmail"
+          v-model="email"
           label="Email"
           prepend-icon="mdi-email"
           outlined
@@ -14,7 +14,7 @@
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
           type="password"
-          v-model="loginPassword"
+          v-model="password"
           label="Password"
           prepend-icon="mdi-lock"
           outlined
@@ -34,15 +34,18 @@ export default {
 
   data() {
     return {
-      loginEmail: "",
-      loginPassword: "",
+      email: "",
+      password: "",
       error: "",
     };
   },
 
   methods: {
     checkLoginForm() {
-      console.log(this.loginEmail, this.loginPassword);
+      this.$store.dispatch("", {
+        email: this.email,
+        password: this.password,
+      });
       this.clearForm();
     },
 

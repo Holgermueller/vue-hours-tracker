@@ -1,9 +1,36 @@
 export default {
-    state:{},
+  state: {
+    loading: false,
+    error: null,
+  },
 
-    mutations:{},
+  mutations: {
+    SET_LOADING(state, payload) {
+      state.loading = payload;
+    },
 
-    actions:{},
+    SET_ERROR(state, payload) {
+      state.error = payload;
+    },
 
-    getters:{}
-}
+    CLEAR_ERROR(state) {
+      state.error = null;
+    },
+  },
+
+  actions: {
+    clearError({ commit }) {
+      commit("CLEAR_ERROR");
+    },
+  },
+
+  getters: {
+    loading(state) {
+      return state.loading;
+    },
+
+    error(state) {
+      return state.error;
+    },
+  },
+};

@@ -1,11 +1,15 @@
 <template>
-  <div>
+  <div id="register">
+    <v-layout row v-if="error">
+      <app-alert @dismissed="onDismissed" :v-text="error.message"></app-alert>
+    </v-layout>
+
     <v-form ref="form">
       <h1>Register here:</h1>
 
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
-          v-model="RegisterUsername"
+          v-model="username"
           label="Username"
           prepend-icon="mdi-account-circle"
           outlined
@@ -14,7 +18,7 @@
 
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
-          v-model="RegisterEmail"
+          v-model="email"
           label="Email"
           prepend-icon="mdi-email"
           outlined
@@ -23,7 +27,7 @@
 
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
-          v-model="RegisterPassword"
+          v-model="password"
           label="Password"
           prepend-icon="mdi-lock"
           outlined
@@ -32,7 +36,7 @@
 
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
-          v-model="ConfirmPassword"
+          v-model="confirmPassword"
           label="Confirm Password"
           prepend-icon="mdi-lock"
           outlined
@@ -52,16 +56,43 @@ export default {
 
   data() {
     return {
-      RegisterUsername: "",
-      RegisterEmail: "",
-      RegisterPassword: "",
-      ConfirmPassword: "",
-      error: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     };
   },
 
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    },
+
+    error() {
+      return this.$store.getters.error;
+    },
+  },
+
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push("./dashboard");
+      }
+    },
+  },
+
   methods: {
-    checkForm() {},
+    checkForm() {
+      this.$store.dispatch("registerUser", {
+        email: this.email,
+        password: this.password,
+      });
+
+      this.$store.dispatch("createUserProfile", {
+        email: this.email,
+        username: this.username,
+      });
+    },
 
     clearForm() {
       this.$ref.form.reset();

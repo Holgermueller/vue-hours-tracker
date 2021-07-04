@@ -5,7 +5,14 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn>
+      <v-btn
+        v-if="userIsAuthenticated"
+        color="primary"
+        elevation="0"
+        @click.prevent="logout"
+        :loading="loading"
+        :disabled="loading"
+      >
         Log out
       </v-btn>
     </v-app-bar>
@@ -26,10 +33,34 @@ export default {
 
   components: {},
 
+  computed: {
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    },
+
+    loading() {
+      return this.$store.getters.loading;
+    },
+  },
+
   data: () => ({
     //
   }),
+
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.footer {
+  margin: auto;
+}
+</style>

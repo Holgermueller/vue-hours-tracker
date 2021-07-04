@@ -27,5 +27,6 @@ export default {
 .login-register {
   width: 75%;
   margin: 7px auto;
+  padding: 4px;
 }
 </style>

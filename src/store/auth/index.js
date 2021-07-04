@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import db from "../../firebase/firebaseInit";
 
 export default {
   state: {
@@ -26,6 +27,20 @@ export default {
             email: user.email,
             userId: user.uid,
           };
+
+          db.collection("usersProfiles")
+            .add({
+              creatorId: user.uid,
+              username: payload.username,
+              email: payload.email,
+            })
+            .then(() => {
+              commit("SET_LOADING", false);
+            })
+            .catch((err) => {
+              commit("SET_LOADING", true);
+              commit("SET_ERROR", err);
+            });
 
           commit("SET_USER", newUser);
           commit("SET_LOADING", false);

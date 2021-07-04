@@ -12,27 +12,31 @@ export default {
   },
 
   actions: {
-    createUserProfile({ commit, getters }, payload) {
+    getUserProfile({ commit, getters }) {
       commit("SET_LOADING", true);
-      commit("CLEAR_ERROR");
 
       firebase
-        .collection("userProfiles")
-        .add({
-          creatorId: getters.user.userId,
-          username: payload.username,
-          email: payload.email,
-        })
-        .then(() => {
-          commit("SET_LOADING", false);
-        })
-        .catch((err) => {
-          commit("SET_LOADING", true);
-          commit("SET_ERROR", err);
-        });
+        .collection("usersProfiles")
+        .where("creatorId", "==", getters.user.userId)
+        .onSnapshot(
+          (querySnapshot) => {
+            let userProfile = [];
+            querySnapshot.forEach((doc) => {
+              let userInfo = {
+                userId: doc.id,
+                username: doc.data().username,
+                email: doc.data().email,
+              };
+              userProfile.push(userInfo);
+            });
+            commit("SET_USER_PROFILE", userProfile);
+          },
+          (err) => {
+            commit("SET_LOADING", true);
+            commit("SET_ERROR", err);
+          }
+        );
     },
-
-    getUserProfile() {},
 
     deleteUserProfile() {},
   },

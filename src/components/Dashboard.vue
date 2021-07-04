@@ -1,6 +1,6 @@
 <template>
   <div id="dashboard">
-    <DisplayHours />
+    <DisplayHours :userProfile="userProfile" />
 
     <IncrementHoursForm />
 
@@ -20,6 +20,20 @@ export default {
     IncrementHoursForm,
     DisplayHours,
     DecrementHoursForm,
+  },
+
+  created() {
+    this.$store.dispatch("getUserProfile");
+  },
+
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    },
+
+    userProfile() {
+      return this.$store.getters.userProfile;
+    },
   },
 };
 </script>

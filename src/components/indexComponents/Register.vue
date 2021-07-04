@@ -86,16 +86,16 @@ export default {
       this.$store.dispatch("registerUser", {
         email: this.email,
         password: this.password,
-      });
-
-      this.$store.dispatch("createUserProfile", {
-        email: this.email,
         username: this.username,
       });
     },
 
     clearForm() {
       this.$ref.form.reset();
+    },
+
+    onDismissed() {
+      this.$store.dispatch("clearError");
     },
   },
 };

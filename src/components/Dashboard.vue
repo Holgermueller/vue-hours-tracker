@@ -6,10 +6,6 @@
 
     <DisplayHours :userProfile="userProfile" />
 
-    <h1>
-      {{ user }}
-    </h1>
-
     <IncrementHoursForm />
 
     <DecrementHoursForm />
@@ -30,17 +26,9 @@ export default {
     DecrementHoursForm,
   },
 
-  mounted() {
-    this.$store.dispatch("getUserProfile");
-  },
-
   computed: {
     user() {
       return this.$store.getters.user;
-    },
-
-    userProfile() {
-      return this.$store.getters.userProfile;
     },
 
     error() {

@@ -1,7 +1,6 @@
 <template>
   <div id="login">
     <v-form ref="form">
-      <h1>Log in here:</h1>
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
           type="email"
@@ -23,7 +22,12 @@
 
       <v-btn @click.prevent="clearForm">Cancel</v-btn>
 
-      <v-btn @click.prevent="checkLoginForm">Submit</v-btn>
+      <v-btn
+        @click.prevent="checkLoginForm"
+        :loading="loading"
+        :disabled="loading"
+        >Submit</v-btn
+      >
     </v-form>
   </div>
 </template>

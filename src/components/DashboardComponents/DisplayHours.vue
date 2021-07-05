@@ -22,7 +22,16 @@
 export default {
   name: "HoursDisplay",
 
-  props: ["userProfile"],
+  updated() {
+    this.$store.dispatch("getUserProfile");
+  },
+
+  computed: {
+    userProfile() {
+      return this.$store.getters.userProfile;
+    },
+  },
+
   // {
   //   userProfile: {
   //     type: Array,

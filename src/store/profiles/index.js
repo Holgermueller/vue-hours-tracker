@@ -20,7 +20,7 @@ export default {
         .where("creatorId", "==", getters.user.userId)
         .onSnapshot(
           (querySnapshot) => {
-            let userProfile = null;
+            let userProfile = [];
             querySnapshot.forEach((doc) => {
               let userInfo = {
                 userId: doc.id,

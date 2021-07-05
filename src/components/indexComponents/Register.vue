@@ -5,8 +5,6 @@
     </v-layout>
 
     <v-form ref="form">
-      <h1>Register here:</h1>
-
       <v-flex xs12 sm12 md12 lg12 xl12
         ><v-text-field
           v-model="username"
@@ -44,7 +42,7 @@
       ></v-flex>
 
       <v-btn @click.prevent="clearForm">Cancel</v-btn>
-
+      <v-spacer></v-spacer>
       <v-btn @click.prevent="checkForm">Submit</v-btn>
     </v-form>
   </div>

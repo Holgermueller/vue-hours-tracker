@@ -1,5 +1,9 @@
 <template>
   <div id="dashboard">
+    <v-layout row v-if="error">
+      <app-alert @dismissed="onDismissed" :v-text="error.message"></app-alert>
+    </v-layout>
+
     <DisplayHours :userProfile="userProfile" />
 
     <h1>
@@ -26,7 +30,7 @@ export default {
     DecrementHoursForm,
   },
 
-  created() {
+  mounted() {
     this.$store.dispatch("getUserProfile");
   },
 
@@ -37,6 +41,10 @@ export default {
 
     userProfile() {
       return this.$store.getters.userProfile;
+    },
+
+    error() {
+      return this.$store.getters.error;
     },
   },
 };

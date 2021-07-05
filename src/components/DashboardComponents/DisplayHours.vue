@@ -2,7 +2,7 @@
   <div>
     <v-card class="hours-card text-center">
       <v-card-title>
-        <h1>Hello, {{ userProfile.username }}</h1>
+        <h1>Hello, {{ userProfile }}</h1>
       </v-card-title>
 
       <v-card-subtitle>
@@ -22,12 +22,13 @@
 export default {
   name: "HoursDisplay",
 
-  props: {
-    userProfile: {
-      type: Array,
-      required: true,
-    },
-  },
+  props: ["userProfile"],
+  // {
+  //   userProfile: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  // },
 };
 </script>
 

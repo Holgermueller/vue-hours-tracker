@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="login">
     <v-form ref="form">
       <h1>Log in here:</h1>
       <v-flex xs12 sm12 md12 lg12 xl12

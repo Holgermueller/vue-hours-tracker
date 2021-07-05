@@ -2,7 +2,7 @@
   <div>
     <v-card class="hours-card text-center">
       <v-card-title>
-        <h1>Hello, {{ userProfile[0].username }}</h1>
+        <h1>Hello, {{ userProfile.username }}</h1>
       </v-card-title>
 
       <v-card-subtitle>

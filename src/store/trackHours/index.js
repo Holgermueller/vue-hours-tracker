@@ -1,9 +1,15 @@
 export default {
-    state:{},
+  state: {
+    userHours: null,
+  },
 
-    mutations:{},
+  mutations: {},
 
-    actions:{},
+  actions: {},
 
-    getters:{}
-}
+  getters: {
+    userHours(state) {
+      return state.userHours;
+    },
+  },
+};

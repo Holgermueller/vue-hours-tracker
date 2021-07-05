@@ -36,13 +36,34 @@ export default {
     return {
       email: "",
       password: "",
-      error: "",
     };
+  },
+
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    },
+
+    error() {
+      return this.$store.getters.error;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
+    },
+  },
+
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push("./dashboard");
+      }
+    },
   },
 
   methods: {
     checkLoginForm() {
-      this.$store.dispatch("", {
+      this.$store.dispatch("loginUser", {
         email: this.email,
         password: this.password,
       });

@@ -26,6 +26,7 @@ export default {
                 userId: doc.id,
                 username: doc.data().username,
                 email: doc.data().email,
+                creatorId: doc.data().creatorId,
               };
               userProfile.push(userInfo);
             });

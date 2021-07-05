@@ -2,6 +2,10 @@
   <div id="dashboard">
     <DisplayHours :userProfile="userProfile" />
 
+    <h1>
+      {{ user }}
+    </h1>
+
     <IncrementHoursForm />
 
     <DecrementHoursForm />

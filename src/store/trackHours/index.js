@@ -1,6 +1,6 @@
 export default {
   state: {
-    userHours: null,
+    userHours: 0,
   },
 
   mutations: {},

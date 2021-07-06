@@ -2,6 +2,7 @@
   <div>
     <v-card class="decrement-hours">
       <v-card-title>
+        <v-icon left>mdi-minus</v-icon>
         Remove Hours
       </v-card-title>
       <v-card-text>
@@ -15,6 +16,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn @click.prevent="removeHours" :disabled="tooFewHoursToRemove">
+          <v-icon left>mdi-check-bold</v-icon>
           Remove Hours
         </v-btn>
       </v-card-actions>

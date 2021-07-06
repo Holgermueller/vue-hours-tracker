@@ -1,14 +1,12 @@
 <template>
   <div>
     <v-card class="hours-card text-center">
-      <v-card-title>
-        <h1>Hello, {{ userProfile }}</h1>
+      <v-card-title class="heading2">
+        <v-icon left>mdi-account-circle</v-icon>Hello, {{ userProfile[0] }}
       </v-card-title>
 
       <v-card-subtitle>
-        <h2>
-          Hours remaining:
-        </h2>
+        <h2>Hours remaining: {{ hoursToTrack }}</h2>
       </v-card-subtitle>
 
       <v-card-text>
@@ -22,13 +20,17 @@
 export default {
   name: "HoursDisplay",
 
-  updated() {
+  mounted() {
     this.$store.dispatch("getUserProfile");
   },
 
   computed: {
     userProfile() {
       return this.$store.getters.userProfile;
+    },
+
+    hoursToTrack() {
+      return this.$store.getters.hoursToTrack;
     },
   },
 

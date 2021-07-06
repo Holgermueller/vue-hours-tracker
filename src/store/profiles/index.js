@@ -22,6 +22,7 @@ export default {
           (querySnapshot) => {
             let userProfile = [];
             querySnapshot.forEach((doc) => {
+              console.log(doc.data());
               let userInfo = {
                 userId: doc.id,
                 username: doc.data().username,
@@ -31,6 +32,7 @@ export default {
               userProfile.push(userInfo);
             });
             commit("SET_USER_PROFILE", userProfile);
+            commit("SET_LOADING", false);
           },
           (err) => {
             commit("SET_LOADING", true);

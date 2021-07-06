@@ -1,34 +1,46 @@
 <template>
   <div id="login">
-    <v-form ref="form">
-      <v-flex xs12 sm12 md12 lg12 xl12
-        ><v-text-field
-          type="email"
-          v-model="email"
-          label="Email"
-          prepend-icon="mdi-email"
-          outlined
-        ></v-text-field
-      ></v-flex>
-      <v-flex xs12 sm12 md12 lg12 xl12
-        ><v-text-field
-          type="password"
-          v-model="password"
-          label="Password"
-          prepend-icon="mdi-lock"
-          outlined
-        ></v-text-field
-      ></v-flex>
+    <v-card elevation="0">
+      <v-card-text>
+        <v-form ref="form">
+          <v-flex xs12 sm12 md12 lg12 xl12
+            ><v-text-field
+              type="email"
+              v-model="email"
+              label="Email"
+              prepend-icon="mdi-email"
+              outlined
+            ></v-text-field
+          ></v-flex>
+          <v-flex xs12 sm12 md12 lg12 xl12
+            ><v-text-field
+              type="password"
+              v-model="password"
+              label="Password"
+              prepend-icon="mdi-lock"
+              outlined
+            ></v-text-field
+          ></v-flex>
+        </v-form>
+      </v-card-text>
 
-      <v-btn @click.prevent="clearForm">Cancel</v-btn>
+      <v-card-actions>
+        <v-btn @click.prevent="clearForm">
+          <v-icon left>mdi-cancel</v-icon>
+          Cancel</v-btn
+        >
 
-      <v-btn
-        @click.prevent="checkLoginForm"
-        :loading="loading"
-        :disabled="loading"
-        >Submit</v-btn
-      >
-    </v-form>
+        <v-spacer></v-spacer>
+
+        <v-btn
+          @click.prevent="checkLoginForm"
+          :loading="loading"
+          :disabled="loading"
+          >Submit
+          <v-icon right>mdi-login</v-icon>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 

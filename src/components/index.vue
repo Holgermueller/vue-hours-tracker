@@ -6,6 +6,9 @@
         :key="index"
       >
         <v-expansion-panel-header id="panelData.id">
+          <v-icon left>
+            {{ panelData.icon }}
+          </v-icon>
           {{ panelData.panelHeader }}</v-expansion-panel-header
         >
 
@@ -40,10 +43,12 @@ export default {
         {
           id: 1,
           panelHeader: "Log In Here:",
+          icon: "mdi-login",
         },
         {
           id: 2,
           panelHeader: "Register Here:",
+          icon: "mdi-register",
         },
       ],
     };

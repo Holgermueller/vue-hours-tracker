@@ -1,7 +1,11 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark class="text-center">
-      <h1>Hours Tracker</h1>
+      <h1>
+        <v-icon left>mdi-clock</v-icon>
+
+        Hours Tracker
+      </h1>
 
       <v-spacer></v-spacer>
 
@@ -14,6 +18,7 @@
         :disabled="loading"
       >
         Log out
+        <v-icon right>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
 

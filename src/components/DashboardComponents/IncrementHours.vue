@@ -2,6 +2,7 @@
   <div>
     <v-card class="increment-card">
       <v-card-title>
+        <v-icon left>mdi-plus</v-icon>
         Add hours:
       </v-card-title>
       <v-card-text>
@@ -16,6 +17,7 @@
           @click.prevent="addHours"
           :disabled="tooFewHoursToAdd"
         >
+          <v-icon left>mdi-check-bold</v-icon>
           Add Hours
         </v-btn>
       </v-card-actions>

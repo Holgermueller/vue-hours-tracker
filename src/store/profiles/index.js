@@ -12,6 +12,32 @@ export default {
   },
 
   actions: {
+    createUserProfile({ commit, getters }, payload) {
+      commit("SET_LOADING", true);
+
+      firebase
+        .collection("usersProfiles")
+        .add({
+          creatorId: getters.user.uid,
+          username: payload.username,
+          email: payload.email,
+        })
+        .then(() => {
+          let newUser = {
+            creatorId: getters.user.uid,
+            userName: payload.username,
+            email: payload.email,
+          };
+
+          commit("SET_USER_PROFILE", newUser);
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
+    },
+
     getUserProfile({ commit, getters }) {
       commit("SET_LOADING", true);
 

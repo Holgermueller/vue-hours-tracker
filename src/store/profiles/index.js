@@ -48,7 +48,6 @@ export default {
           (querySnapshot) => {
             let userProfile = [];
             querySnapshot.forEach((doc) => {
-              console.log(doc.data());
               let userInfo = {
                 userId: doc.id,
                 username: doc.data().username,

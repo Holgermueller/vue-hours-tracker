@@ -6,11 +6,15 @@
         :key="index"
       >
         <v-expansion-panel-header id="panelData.id">
-          <v-icon left>
-            {{ panelData.icon }}
-          </v-icon>
-          {{ panelData.panelHeader }}</v-expansion-panel-header
-        >
+          <v-container>
+            <v-row>
+              <v-col class="text-left"
+                ><v-icon left> {{ panelData.icon }} </v-icon
+                >{{ panelData.panelHeader }}</v-col
+              >
+            </v-row>
+          </v-container>
+        </v-expansion-panel-header>
 
         <v-expansion-panel-content
           v-if="panelData.panelHeader === 'Log In Here:'"
@@ -48,7 +52,7 @@ export default {
         {
           id: 2,
           panelHeader: "Register Here:",
-          icon: "mdi-register",
+          icon: "mdi-pen",
         },
       ],
     };

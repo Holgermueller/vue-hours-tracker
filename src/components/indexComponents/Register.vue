@@ -49,12 +49,16 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn @click.prevent="clearForm">
+        <v-btn @click.prevent="clearForm" elevation="0">
           <v-icon left>mdi-cancel</v-icon>
           Cancel</v-btn
         >
         <v-spacer></v-spacer>
-        <v-btn @click.prevent="checkForm"
+        <v-btn
+          @click.prevent="checkForm"
+          :loading="loading"
+          :disabled="loading"
+          elevation="0"
           >Submit
           <v-icon right>mdi-login</v-icon>
         </v-btn>
@@ -79,6 +83,10 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
     },
 
     error() {

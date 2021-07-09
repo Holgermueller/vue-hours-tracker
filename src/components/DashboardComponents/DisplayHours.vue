@@ -2,7 +2,8 @@
   <div>
     <v-card class="hours-card text-center">
       <v-card-title class="heading2">
-        <v-icon left>mdi-account-circle</v-icon>Hello, {{ userProfile[0] }}
+        <v-icon left>mdi-account-circle</v-icon>Hello,
+        {{ userProfile[0].username }}
       </v-card-title>
 
       <v-card-subtitle>
@@ -20,8 +21,15 @@
 export default {
   name: "HoursDisplay",
 
-  mounted() {
-    this.$store.dispatch("getUserProfile");
+  created() {
+    this.$store
+      .dispatch("getUserProfile")
+      .then(() => {
+        console.log("Profile fetched!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 
   computed: {

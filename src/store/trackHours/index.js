@@ -67,7 +67,7 @@ export default {
       firebase
         .collection("userHoursToMakeUp")
         .add({
-          creatorId: getters.user.uid,
+          creatorId: getters.user.userId,
           userHours: 0,
         })
         .then(() => {

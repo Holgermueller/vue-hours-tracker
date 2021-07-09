@@ -18,13 +18,13 @@ export default {
       firebase
         .collection("usersProfiles")
         .add({
-          creatorId: getters.user.uid,
+          creatorId: getters.user.userId,
           username: payload.username,
           email: payload.email,
         })
         .then(() => {
           let newUser = {
-            creatorId: getters.user.uid,
+            creatorId: getters.user.userId,
             userName: payload.username,
             email: payload.email,
           };

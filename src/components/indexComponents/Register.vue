@@ -109,6 +109,13 @@ export default {
         password: this.password,
         username: this.username,
       });
+
+      this.$store.dispatch("createUserProfile", {
+        username: this.username,
+        email: this.email,
+      });
+
+      this.$store.dispatch("setInitialHoursToMakeUp");
     },
 
     clearForm() {

@@ -41,6 +41,14 @@ export default {
         );
     },
 
+    // detachFromProfile({ commit }) {
+    //   commit("SET_LOADING", true);
+
+    //   firebase.collection("usersProfiles");
+
+    //   this.unsubscribe();
+    // },
+
     deleteUserProfile() {},
   },
 

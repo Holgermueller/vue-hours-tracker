@@ -15,7 +15,11 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click.prevent="removeHours" :disabled="tooFewHoursToRemove">
+        <v-btn
+          @click.prevent="removeHours"
+          :loading="loading"
+          :disabled="tooFewHoursToRemove || loading"
+        >
           <v-icon left>mdi-check-bold</v-icon>
           Remove Hours
         </v-btn>
@@ -36,7 +40,15 @@ export default {
 
   computed: {
     tooFewHoursToRemove() {
-      return this.hoursToRemove <= 0;
+      return (
+        this.hoursToRemove <= 0 ||
+        this.hoursToRemove == null ||
+        this.hoursToRemove == undefined
+      );
+    },
+
+    loading() {
+      return this.$store.getters.loading;
     },
   },
 

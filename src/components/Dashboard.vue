@@ -6,7 +6,7 @@
 
     <DisplayHours :userProfile="userProfile" />
 
-    <IncrementHoursForm />
+    <IncrementHoursForm :userHours="userHours[0].userHours" />
 
     <DecrementHoursForm />
   </div>
@@ -26,8 +26,8 @@ export default {
     DecrementHoursForm,
   },
 
-  created() {
-    return this.$store
+  beforeCreate() {
+    this.$store
       .dispatch("getUserProfile")
       .then(() => {
         console.log("Profile fetched!");
@@ -35,6 +35,8 @@ export default {
       .catch((err) => {
         console.log(err);
       });
+
+    this.$store.dispatch("getHoursFromDb");
   },
 
   computed: {
@@ -48,6 +50,10 @@ export default {
 
     error() {
       return this.$store.getters.error;
+    },
+
+    hoursFromDb() {
+      return this.$store.getters.userHours;
     },
   },
 

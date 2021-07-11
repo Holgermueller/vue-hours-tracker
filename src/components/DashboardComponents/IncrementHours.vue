@@ -3,7 +3,7 @@
     <v-card class="increment-card">
       <v-card-title>
         <v-icon left>mdi-plus</v-icon>
-        Add hours:
+        Add hours: {{ userHours }}
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -15,7 +15,8 @@
           id="addHoursButton"
           class="add-hours-button"
           @click.prevent="addHours"
-          :disabled="tooFewHoursToAdd"
+          :loading="loading"
+          :disabled="tooFewHoursToAdd || loading"
         >
           <v-icon left>mdi-check-bold</v-icon>
           Add Hours
@@ -29,6 +30,13 @@
 export default {
   name: "HoursIncrementForm",
 
+  props: {
+    userHours: {
+      type: Number,
+      required: true,
+    },
+  },
+
   data() {
     return {
       hoursToAdd: 1,
@@ -37,7 +45,15 @@ export default {
 
   computed: {
     tooFewHoursToAdd() {
-      return this.hoursToAdd <= 0;
+      return (
+        this.hoursToAdd <= 0 ||
+        this.hoursToAdd == undefined ||
+        this.hoursToAdd == null
+      );
+    },
+
+    loading() {
+      return this.$store.getters.loading;
     },
   },
 

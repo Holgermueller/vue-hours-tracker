@@ -32,7 +32,7 @@ export default {
   },
 
   actions: {
-    getHourFromDb({ commit, getters }) {
+    getHoursFromDb({ commit, getters }) {
       commit("SET_LOADING", true);
 
       firebase
@@ -42,11 +42,9 @@ export default {
           (querySnapshot) => {
             let userHours = [];
             querySnapshot.forEach((doc) => {
-              console.log(doc.data());
-
               let hoursToDom = {
                 hoursId: doc.id,
-                hoursLeft: doc.data().userHours,
+                userHours: doc.data().userHours,
                 creatorId: doc.data().creatorId,
               };
               userHours.push(hoursToDom);

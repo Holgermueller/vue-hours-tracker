@@ -12,7 +12,7 @@
 
       <v-card-text>
         <h1>
-          {{ hoursToTrack }}
+          {{ userProfile[0].userHours }}
         </h1>
       </v-card-text>
     </v-card>
@@ -27,12 +27,6 @@ export default {
     userProfile: {
       type: Array,
       required: true,
-    },
-  },
-
-  computed: {
-    hoursToTrack() {
-      return this.$store.getters.hoursToTrack;
     },
   },
 };

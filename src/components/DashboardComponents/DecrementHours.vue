@@ -34,6 +34,12 @@ export default {
     };
   },
 
+  computed: {
+    tooFewHoursToRemove() {
+      return this.hoursToRemove <= 0;
+    },
+  },
+
   methods: {
     removeHours() {
       console.log(this.hoursToRemove);

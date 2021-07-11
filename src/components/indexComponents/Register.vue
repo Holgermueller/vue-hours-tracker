@@ -97,7 +97,7 @@ export default {
   watch: {
     user(value) {
       if (value !== null && value !== undefined) {
-        this.$router.push("./dashboard/" + this.user.userId);
+        this.$router.push("./dashboard");
       }
     },
   },
@@ -109,13 +109,6 @@ export default {
         password: this.password,
         username: this.username,
       });
-
-      // this.$store.dispatch("createUserProfile", {
-      //   username: this.username,
-      //   email: this.email,
-      // });
-
-      // this.$store.dispatch("setInitialHoursToMakeUp");
     },
 
     clearForm() {

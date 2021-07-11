@@ -7,11 +7,13 @@
       </v-card-title>
 
       <v-card-subtitle>
-        <h2>Hours remaining: {{ hoursToTrack }}</h2>
+        <h2>Hours remaining:</h2>
       </v-card-subtitle>
 
       <v-card-text>
-        <h1>0</h1>
+        <h1>
+          {{ hoursToTrack }}
+        </h1>
       </v-card-text>
     </v-card>
   </div>
@@ -23,8 +25,14 @@ export default {
 
   props: {
     userProfile: {
-      type: Object,
+      type: Array,
       required: true,
+    },
+  },
+
+  computed: {
+    hoursToTrack() {
+      return this.$store.getters.hoursToTrack;
     },
   },
 };

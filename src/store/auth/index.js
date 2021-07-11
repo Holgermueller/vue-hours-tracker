@@ -33,6 +33,7 @@ export default {
               creatorId: user.uid,
               username: payload.username,
               email: payload.email,
+              userHours: 0,
             })
             .then(() => {
               commit("SET_LOADING", false);

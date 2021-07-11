@@ -2,7 +2,7 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    userHours: 0,
+    userHours: null,
   },
 
   mutations: {
@@ -36,7 +36,7 @@ export default {
       commit("SET_LOADING", true);
 
       firebase
-        .collection("userHoursToMakeUp")
+        .collection("usersProfiles")
         .where("creatorId", "==", getters.user.userId)
         .onSnapshot(
           (querySnapshot) => {
@@ -61,29 +61,11 @@ export default {
         );
     },
 
-    setInitialHoursToMakeUp({ commit, getters }) {
-      commit("SET_LOADING", true);
-
-      firebase
-        .collection("userHoursToMakeUp")
-        .add({
-          creatorId: getters.user.userId,
-          userHours: 0,
-        })
-        .then(() => {
-          commit("SET_LOADING", false);
-        })
-        .catch((err) => {
-          commit("SET_LOADING", true);
-          commit("SET_ERROR", err);
-        });
-    },
-
     addHours({ commit }, payload) {
       commit("SET_LOADING", true);
 
       firebase
-        .collection("userHoursToMakeUp")
+        .collection("usersProfiles")
         .doc(payload.hoursId)
         .update({
           userHours: payload.hoursToAdd,
@@ -102,7 +84,7 @@ export default {
       commit("SET_LOADING", true);
 
       firebase
-        .collection("userHoursToMakeUp")
+        .collection("usersProfiles")
         .doc(payload.hoursId)
         .update({
           userHours: payload.hoursToRemove,

@@ -27,15 +27,14 @@ export default {
   },
 
   created() {
-    console.log("created");
-    // return this.$store
-    //   .dispatch("getUserProfile")
-    //   .then(() => {
-    //     console.log("Profile fetched!");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    return this.$store
+      .dispatch("getUserProfile")
+      .then(() => {
+        console.log("Profile fetched!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 
   computed: {
@@ -49,6 +48,12 @@ export default {
 
     error() {
       return this.$store.getters.error;
+    },
+  },
+
+  methods: {
+    onDismissed() {
+      this.$store.dispatch("clearError");
     },
   },
 };

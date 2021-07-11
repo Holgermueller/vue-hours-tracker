@@ -6,7 +6,10 @@
 
     <DisplayHours :userProfile="userProfile" />
 
-    <IncrementHoursForm :userHours="userHours[0].userHours" />
+    <IncrementHoursForm
+      :userHours="hoursFromDb[0].userHours"
+      :hoursId="hoursFromDb[0].hoursId"
+    />
 
     <DecrementHoursForm />
   </div>

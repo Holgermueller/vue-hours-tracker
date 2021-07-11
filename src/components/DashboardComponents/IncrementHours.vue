@@ -35,6 +35,11 @@ export default {
       type: Number,
       required: true,
     },
+
+    hoursId: {
+      type: String,
+      required: true,
+    },
   },
 
   data() {
@@ -59,7 +64,15 @@ export default {
 
   methods: {
     addHours() {
-      console.log(this.hoursToAdd);
+      let baseHours = parseInt(this.userHours);
+
+      let newHours = baseHours + parseInt(this.hoursToAdd);
+      console.log(newHours);
+
+      this.$store.dispatch("addHours", {
+        hoursId: this.hoursId,
+        hoursToAdd: newHours,
+      });
     },
   },
 };

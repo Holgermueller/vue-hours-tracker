@@ -27,30 +27,6 @@ export default {
       required: true,
     },
   },
-
-  // created() {
-  //   this.$store
-  //     .dispatch("getUserProfile")
-  //     .then(() => {
-  //       console.log("Profile fetched!");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // },
-
-  // computed: {
-  //   hoursToTrack() {
-  //     return this.$store.getters.hoursToTrack;
-  //   },
-  // },
-
-  // {
-  //   userProfile: {
-  //     type: Array,
-  //     required: true,
-  //   },
-  // },
 };
 </script>
 

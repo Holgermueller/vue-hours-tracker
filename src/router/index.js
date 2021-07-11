@@ -16,7 +16,7 @@ let router = new VueRouter({
     },
 
     {
-      path: "/dashboard/:userId",
+      path: "/dashboard",
       name: "Dashboard",
       component: Dashboard,
       props: true,

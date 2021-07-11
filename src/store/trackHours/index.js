@@ -2,7 +2,7 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    userHours: null,
+    userHours: 0,
   },
 
   mutations: {

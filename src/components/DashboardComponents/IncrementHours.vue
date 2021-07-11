@@ -35,12 +35,6 @@ export default {
     };
   },
 
-  computed: {
-    tooFewHoursToAdd() {
-      return this.hoursToAdd <= 0;
-    },
-  },
-
   methods: {
     addHours() {
       console.log(this.hoursToAdd);

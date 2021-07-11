@@ -21,26 +21,29 @@
 export default {
   name: "HoursDisplay",
 
-  created() {
-    this.$store
-      .dispatch("getUserProfile")
-      .then(() => {
-        console.log("Profile fetched!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
-
-  computed: {
-    userProfile() {
-      return this.$store.getters.userProfile;
-    },
-
-    hoursToTrack() {
-      return this.$store.getters.hoursToTrack;
+  props: {
+    userProfile: {
+      type: Object,
+      required: true,
     },
   },
+
+  // created() {
+  //   this.$store
+  //     .dispatch("getUserProfile")
+  //     .then(() => {
+  //       console.log("Profile fetched!");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // },
+
+  // computed: {
+  //   hoursToTrack() {
+  //     return this.$store.getters.hoursToTrack;
+  //   },
+  // },
 
   // {
   //   userProfile: {

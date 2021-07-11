@@ -26,9 +26,25 @@ export default {
     DecrementHoursForm,
   },
 
+  created() {
+    console.log("created");
+    // return this.$store
+    //   .dispatch("getUserProfile")
+    //   .then(() => {
+    //     console.log("Profile fetched!");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  },
+
   computed: {
     user() {
       return this.$store.getters.user;
+    },
+
+    userProfile() {
+      return this.$store.getters.userProfile;
     },
 
     error() {

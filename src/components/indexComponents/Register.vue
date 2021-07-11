@@ -110,12 +110,12 @@ export default {
         username: this.username,
       });
 
-      this.$store.dispatch("createUserProfile", {
-        username: this.username,
-        email: this.email,
-      });
+      // this.$store.dispatch("createUserProfile", {
+      //   username: this.username,
+      //   email: this.email,
+      // });
 
-      this.$store.dispatch("setInitialHoursToMakeUp");
+      // this.$store.dispatch("setInitialHoursToMakeUp");
     },
 
     clearForm() {

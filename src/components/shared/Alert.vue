@@ -19,7 +19,7 @@ export default {
   },
 
   methods: {
-    onclose() {
+    onClose() {
       this.$emit("dismissed");
     },
   },

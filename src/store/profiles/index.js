@@ -9,6 +9,26 @@ export default {
     SET_USER_PROFILE(state, payload) {
       state.userProfile = payload;
     },
+
+    ADD_HOURS(state, payload) {
+      const hoursToEdit = state.userHours.find((theseHours) => {
+        return theseHours.id === payload.hoursId;
+      });
+
+      if (payload.hoursToAdd) {
+        hoursToEdit.userHours = payload.hoursToAdd;
+      }
+    },
+
+    REMOVE_HOURS(state, payload) {
+      const hoursToEdit = state.userHours.find((theseHours) => {
+        return theseHours.id === payload.hoursId;
+      });
+
+      if (payload.hoursToRemove) {
+        hoursToEdit.userHours = payload.hoursToRemove;
+      }
+    },
   },
 
   actions: {
@@ -41,13 +61,44 @@ export default {
         );
     },
 
-    // detachFromProfile({ commit }) {
-    //   commit("SET_LOADING", true);
+    addHours({ commit }, payload) {
+      commit("SET_LOADING", true);
 
-    //   firebase.collection("usersProfiles");
+      firebase
+        .collection("usersProfiles")
+        .doc(payload.creatorId)
+        .update({
+          userHours: payload.hoursToAdd,
+        })
+        .then(() => {
+          commit("ADD_HOURS", payload);
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
+    },
 
-    //   this.unsubscribe();
-    // },
+    removeHours({ commit }, payload) {
+      commit("SET_LOADING", true);
+
+      firebase
+        .collection("usersProfiles")
+        .doc(payload.creatorId)
+        .update({
+          userHours: payload.hoursToRemove,
+        })
+        .then(() => {
+          commit("REMOVE_HOURS", payload);
+
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
+    },
 
     deleteUserProfile() {},
   },

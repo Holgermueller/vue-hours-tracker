@@ -3,7 +3,7 @@
     <v-card class="increment-card">
       <v-card-title>
         <v-icon left>mdi-plus</v-icon>
-        Add hours: {{ userHours }}
+        Add hours:
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -36,7 +36,7 @@ export default {
       required: true,
     },
 
-    hoursId: {
+    userId: {
       type: String,
       required: true,
     },
@@ -70,7 +70,7 @@ export default {
       console.log(newHours);
 
       this.$store.dispatch("addHours", {
-        hoursId: this.hoursId,
+        userId: this.userId,
         hoursToAdd: newHours,
       });
     },

@@ -7,11 +7,14 @@
     <DisplayHours :userProfile="userProfile" />
 
     <IncrementHoursForm
-      :userHours="hoursFromDb[0].userHours"
-      :hoursId="hoursFromDb[0].hoursId"
+      :userHours="userProfile[0].userHours"
+      :userId="userProfile[0].userId"
     />
 
-    <DecrementHoursForm />
+    <DecrementHoursForm
+      :userHours="userProfile[0].userHours"
+      :userId="userProfile[0].userId"
+    />
   </div>
 </template>
 
@@ -38,8 +41,6 @@ export default {
       .catch((err) => {
         console.log(err);
       });
-
-    this.$store.dispatch("getHoursFromDb");
   },
 
   computed: {

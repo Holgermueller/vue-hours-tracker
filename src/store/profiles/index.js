@@ -12,7 +12,7 @@ export default {
 
     ADD_HOURS(state, payload) {
       const hoursToEdit = state.userHours.find((theseHours) => {
-        return theseHours.id === payload.hoursId;
+        return theseHours.id === payload.creatorId;
       });
 
       if (payload.hoursToAdd) {
@@ -22,7 +22,7 @@ export default {
 
     REMOVE_HOURS(state, payload) {
       const hoursToEdit = state.userHours.find((theseHours) => {
-        return theseHours.id === payload.hoursId;
+        return theseHours.id === payload.creatorId;
       });
 
       if (payload.hoursToRemove) {
@@ -66,7 +66,7 @@ export default {
 
       firebase
         .collection("usersProfiles")
-        .doc(payload.creatorId)
+        .doc(payload.userId)
         .update({
           userHours: payload.hoursToAdd,
         })
@@ -85,7 +85,7 @@ export default {
 
       firebase
         .collection("usersProfiles")
-        .doc(payload.creatorId)
+        .doc(payload.userId)
         .update({
           userHours: payload.hoursToRemove,
         })

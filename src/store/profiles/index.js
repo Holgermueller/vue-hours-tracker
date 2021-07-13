@@ -32,72 +32,19 @@ export default {
   },
 
   actions: {
-    getUserProfile({ commit, getters }) {
+    getUserProfile({ commit }) {
       commit("SET_LOADING", true);
-
-      firebase
-        .collection("usersProfiles")
-        .where("creatorId", "==", getters.user.userId)
-        .onSnapshot(
-          (querySnapshot) => {
-            let userProfile = [];
-            querySnapshot.forEach((doc) => {
-              let userInfo = {
-                userId: doc.id,
-                username: doc.data().username,
-                email: doc.data().email,
-                creatorId: doc.data().creatorId,
-                userHours: doc.data().userHours,
-              };
-              userProfile.push(userInfo);
-            });
-            commit("SET_USER_PROFILE", userProfile);
-            commit("SET_LOADING", false);
-          },
-          (err) => {
-            commit("SET_LOADING", true);
-            commit("SET_ERROR", err);
-          }
-        );
+      commit("CLEAR_ERROR");
     },
 
-    addHours({ commit }, payload) {
+    addHours({ commit }) {
       commit("SET_LOADING", true);
-
-      firebase
-        .collection("usersProfiles")
-        .doc(payload.userId)
-        .update({
-          userHours: payload.hoursToAdd,
-        })
-        .then(() => {
-          commit("ADD_HOURS", payload);
-          commit("SET_LOADING", false);
-        })
-        .catch((err) => {
-          commit("SET_LOADING", true);
-          commit("SET_ERROR", err);
-        });
+      commit("CLEAR_ERROR");
     },
 
-    removeHours({ commit }, payload) {
+    removeHours({ commit }) {
       commit("SET_LOADING", true);
-
-      firebase
-        .collection("usersProfiles")
-        .doc(payload.userId)
-        .update({
-          userHours: payload.hoursToRemove,
-        })
-        .then(() => {
-          commit("REMOVE_HOURS", payload);
-
-          commit("SET_LOADING", false);
-        })
-        .catch((err) => {
-          commit("SET_LOADING", true);
-          commit("SET_ERROR", err);
-        });
+      commit("CLEAR_ERROR");
     },
 
     deleteUserProfile() {},

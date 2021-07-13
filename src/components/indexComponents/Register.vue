@@ -3,10 +3,12 @@
     <v-card elevation="0">
       <v-card-text>
         <v-layout row v-if="error">
-          <app-alert
-            @dismissed="onDismissed"
-            :v-text="error.message"
-          ></app-alert>
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <app-alert
+              @dismissed="onDismissed"
+              :v-text="error.message"
+            ></app-alert>
+          </v-flex>
         </v-layout>
 
         <v-form ref="form">

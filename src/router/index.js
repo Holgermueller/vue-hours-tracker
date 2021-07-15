@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-//import firebase from "firebase";
 import Home from "../components/index";
 import Dashboard from "../components/Dashboard";
+import AuthGuard from "./authGuard";
 
 Vue.use(VueRouter);
 
@@ -20,9 +20,7 @@ let router = new VueRouter({
       name: "Dashboard",
       component: Dashboard,
       props: true,
-      // meta: {
-      //   requiresAuth: true,
-      // },
+      beforeEnter: AuthGuard,
     },
   ],
 });

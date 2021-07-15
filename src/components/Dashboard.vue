@@ -30,15 +30,8 @@ export default {
     DecrementHoursForm,
   },
 
-  beforeCreate() {
-    this.$store
-      .dispatch("getUserProfile")
-      .then(() => {
-        console.log("Profile fetched!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  created() {
+    return this.$store.dispatch("getUserProfile");
   },
 
   computed: {

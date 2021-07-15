@@ -24,7 +24,6 @@ export default {
           let user = userCredential.user;
 
           let newUser = {
-            displayName: payload.displayName,
             email: user.email,
             userId: user.uid,
           };
@@ -82,7 +81,6 @@ export default {
       commit("SET_USER", {
         userId: payload.uid,
         email: payload.email,
-        displayName: payload.displayName,
       });
     },
 
@@ -90,8 +88,6 @@ export default {
       commit("SET_LOADING", true);
       commit("CLEAR_ERROR");
     },
-
-    removeUser() {},
   },
 
   getters: {

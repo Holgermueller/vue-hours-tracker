@@ -46,6 +46,10 @@ export default {
       );
     },
 
+    user() {
+      return this.$store.getters.user;
+    },
+
     loading() {
       return this.$store.getters.loading;
     },

@@ -38,16 +38,17 @@ export default {
 
       firebase
         .collection("userProfiles")
-        .where("creatorId", "==", getters.user.userId)
-        .get()
-        .then((doc) => {
-          console.log(doc);
-          commit("SET_LOADING", false);
-        })
-        .catch((err) => {
-          commit("SET_LOADING", true);
-          commit("SET_ERROR", err);
-        });
+        .where("userId", "==", getters.user.userId)
+        .onSnapshot(
+          (doc) => {
+            console.log("action called");
+            console.log(doc);
+          },
+          (err) => {
+            commit("SET_LOADING", true);
+            commit("SET_ERROR", err);
+          }
+        );
     },
 
     addHours({ commit }) {

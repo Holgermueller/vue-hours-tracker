@@ -6,17 +6,13 @@
       </v-flex>
     </v-layout>
 
-    <DisplayHours :userProfile="userProfile" />
+    <h1>{{ user }}</h1>
 
-    <IncrementHoursForm
-      :userHours="userProfile[0].userHours"
-      :userId="userProfile[0].userId"
-    />
+    <DisplayHours />
 
-    <DecrementHoursForm
-      :userHours="userProfile[0].userHours"
-      :userId="userProfile[0].userId"
-    />
+    <IncrementHoursForm />
+
+    <DecrementHoursForm />
   </div>
 </template>
 
@@ -47,7 +43,7 @@ export default {
 
   computed: {
     user() {
-      return this.$store.getters.user;
+      return this.$store.getters.user.userId;
     },
 
     userProfile() {
@@ -56,10 +52,6 @@ export default {
 
     error() {
       return this.$store.getters.error;
-    },
-
-    hoursFromDb() {
-      return this.$store.getters.userHours;
     },
   },
 

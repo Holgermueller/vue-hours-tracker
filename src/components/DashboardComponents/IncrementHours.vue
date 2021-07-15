@@ -31,15 +31,14 @@ export default {
   name: "HoursIncrementForm",
 
   props: {
-    userHours: {
-      type: Number,
-      required: true,
-    },
-
-    userId: {
-      type: String,
-      required: true,
-    },
+    // userHours: {
+    //   type: Number,
+    //   required: true,
+    // },
+    // userId: {
+    //   type: String,
+    //   required: true,
+    // },
   },
 
   data() {

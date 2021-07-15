@@ -3,7 +3,6 @@
     <v-card class="hours-card text-center">
       <v-card-title class="heading2">
         <v-icon left>mdi-account-circle</v-icon>Hello,
-        {{ userProfile[0].username }}
       </v-card-title>
 
       <v-card-subtitle>
@@ -11,9 +10,7 @@
       </v-card-subtitle>
 
       <v-card-text>
-        <h1>
-          {{ userProfile[0].userHours }}
-        </h1>
+        <h1></h1>
       </v-card-text>
     </v-card>
   </div>
@@ -23,12 +20,7 @@
 export default {
   name: "HoursDisplay",
 
-  props: {
-    userProfile: {
-      type: Array,
-      required: true,
-    },
-  },
+  props: {},
 };
 </script>
 

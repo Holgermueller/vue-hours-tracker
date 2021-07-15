@@ -32,9 +32,22 @@ export default {
   },
 
   actions: {
-    getUserProfile({ commit }) {
+    getUserProfile({ commit, getters }) {
       commit("SET_LOADING", true);
       commit("CLEAR_ERROR");
+
+      firebase
+        .collection("userProfiles")
+        .where("creatorId", "==", getters.user.userId)
+        .get()
+        .then((doc) => {
+          console.log(doc);
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
     },
 
     addHours({ commit }) {

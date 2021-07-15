@@ -30,6 +30,23 @@ export default {
           };
 
           commit("SET_USER", newUser);
+
+          db.collection("userProfiles")
+            .add({
+              displayName: payload.username,
+              email: payload.email,
+              userId: user.uid,
+              hoursToMakeUp: 0,
+            })
+            .then(() => {
+              commit("SET_LOADING", false);
+              console.log("Profile created");
+            })
+            .catch((err) => {
+              commit("SET_LOADING", false);
+              commit("SET_ERROR", err);
+            });
+
           commit("SET_LOADING", false);
         })
         .catch((err) => {
@@ -38,9 +55,25 @@ export default {
         });
     },
 
-    loginUser({ commit }) {
+    loginUser({ commit }, payload) {
       commit("SET_LOADING", true);
       commit("CLEAR_ERROR");
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(payload.email, payload.password)
+        .then((user) => {
+          const signedInUser = {
+            email: user.user.email,
+            id: user.user.uid,
+          };
+          commit("SET_USER", signedInUser);
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
     },
 
     autoSignIn({ commit }, payload) {

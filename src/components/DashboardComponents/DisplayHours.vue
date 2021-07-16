@@ -11,12 +11,8 @@
         {{ userProfile.displayName }}
       </v-card-title>
 
-      <v-card-subtitle>
-        <h2>Hours remaining: {{ userProfile.hoursToMakeUp }}</h2>
-      </v-card-subtitle>
-
       <v-card-text>
-        <h1></h1>
+        <h2>Hours remaining: {{ userProfile.hoursToMakeUp }}</h2>
       </v-card-text>
     </v-card>
   </div>

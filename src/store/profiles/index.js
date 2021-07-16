@@ -12,7 +12,7 @@ export default {
 
     ADD_HOURS(state, payload) {
       const hoursToEdit = state.userHours.find((theseHours) => {
-        return theseHours.id === payload.creatorId;
+        return theseHours.id === payload.profileId;
       });
 
       if (payload.hoursToAdd) {
@@ -22,7 +22,7 @@ export default {
 
     REMOVE_HOURS(state, payload) {
       const hoursToEdit = state.userHours.find((theseHours) => {
-        return theseHours.id === payload.creatorId;
+        return theseHours.id === payload.profileId;
       });
 
       if (payload.hoursToRemove) {
@@ -63,14 +63,44 @@ export default {
         );
     },
 
-    addHours({ commit }) {
+    addHours({ commit }, payload) {
       commit("SET_LOADING", true);
       commit("CLEAR_ERROR");
+
+      firebase
+        .collection("userProfiles")
+        .doc(payload.profileId)
+        .update({
+          hoursToMakeUp: payload.hoursToAdd,
+        })
+        .then(() => {
+          commit("ADD_HOURS", payload);
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
     },
 
-    removeHours({ commit }) {
+    removeHours({ commit }, payload) {
       commit("SET_LOADING", true);
       commit("CLEAR_ERROR");
+
+      firebase
+        .collection("userProfiles")
+        .doc(payload.profileId)
+        .update({
+          hoursToMakeUp: payload.hoursToRemove,
+        })
+        .then(() => {
+          commit("ADD_HOURS", payload);
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
     },
 
     deleteUserProfile() {},

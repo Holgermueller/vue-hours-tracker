@@ -16,6 +16,7 @@
     <DecrementHoursForm
       :hoursToMakeUp="userProfile[0].hoursToMakeUp"
       :profileId="userProfile[0].profileId"
+      :id="userProfile[0].id"
     />
   </div>
 </template>

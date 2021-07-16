@@ -3,7 +3,7 @@
     <v-card class="increment-card">
       <v-card-title>
         <v-icon left>mdi-plus</v-icon>
-        Add hours:
+        Add hours: {{ hoursToMakeUp }}
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -31,14 +31,15 @@ export default {
   name: "HoursIncrementForm",
 
   props: {
-    // userHours: {
-    //   type: Number,
-    //   required: true,
-    // },
-    // userId: {
-    //   type: String,
-    //   required: true,
-    // },
+    hoursToMakeUp: {
+      type: Number,
+      required: true,
+    },
+
+    profileId: {
+      type: String,
+      required: true,
+    },
   },
 
   data() {

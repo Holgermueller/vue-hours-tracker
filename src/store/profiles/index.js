@@ -41,15 +41,20 @@ export default {
         .where("profileId", "==", getters.user.userId)
         .onSnapshot(
           (querySnapshot) => {
-            const userProfile = {
-              id: doc.id,
-              profileId: doc.data().profileId,
-              displayName: doc.data().displayName,
-              hoursToMakeUp: doc.data().hoursToMakeUp,
-            };
+            let userProfile = [];
+
+            querySnapshot.forEach((doc) => {
+              const profileData = {
+                id: doc.id,
+                profileId: doc.data().profileId,
+                displayName: doc.data().displayName,
+                hoursToMakeUp: doc.data().hoursToMakeUp,
+              };
+              userProfile.push(profileData);
+            });
+
             commit("SET_USER_PROFILE", userProfile);
             commit("SET_LOADING", false);
-            console.log(querySnapshot.docs[0].data());
           },
           (err) => {
             commit("SET_LOADING", true);

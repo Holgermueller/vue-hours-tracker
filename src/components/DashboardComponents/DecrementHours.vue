@@ -3,7 +3,7 @@
     <v-card class="decrement-hours">
       <v-card-title>
         <v-icon left>mdi-minus</v-icon>
-        Remove Hours
+        Remove Hours {{ hoursToMakeUp }}
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -31,6 +31,18 @@
 <script>
 export default {
   name: "DecrementHoursForm",
+
+  props: {
+    hoursToMakeUp: {
+      type: Number,
+      required: true,
+    },
+
+    profileId: {
+      type: String,
+      required: true,
+    },
+  },
 
   data() {
     return {

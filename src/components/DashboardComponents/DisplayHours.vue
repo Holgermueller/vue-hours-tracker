@@ -8,10 +8,11 @@
 
       <v-card-title class="heading2">
         <v-icon left>mdi-account-circle</v-icon>Hello,
+        {{ userProfile.displayName }}
       </v-card-title>
 
       <v-card-subtitle>
-        <h2>Hours remaining:</h2>
+        <h2>Hours remaining: {{ userProfile.hoursToMakeUp }}</h2>
       </v-card-subtitle>
 
       <v-card-text>
@@ -25,7 +26,12 @@
 export default {
   name: "HoursDisplay",
 
-  props: {},
+  props: {
+    userProfile: {
+      type: Object,
+      required: true,
+    },
+  },
 
   computed: {
     loading() {

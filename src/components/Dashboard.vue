@@ -6,13 +6,17 @@
       </v-flex>
     </v-layout>
 
-    <h1>{{ user }}</h1>
+    <DisplayHours :userProfile="userProfile[0]" />
 
-    <DisplayHours />
+    <IncrementHoursForm
+      :hoursToMakeUp="userProfile[0].hoursToMakeUp"
+      :profileId="userProfile[0].profileId"
+    />
 
-    <IncrementHoursForm />
-
-    <DecrementHoursForm />
+    <DecrementHoursForm
+      :hoursToMakeUp="userProfile[0].hoursToMakeUp"
+      :profileId="userProfile[0].profileId"
+    />
   </div>
 </template>
 
@@ -36,7 +40,7 @@ export default {
 
   computed: {
     user() {
-      return this.$store.getters.user.userId;
+      return this.$store.getters.user;
     },
 
     userProfile() {

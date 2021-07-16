@@ -38,11 +38,18 @@ export default {
 
       firebase
         .collection("userProfiles")
-        .where("userId", "==", getters.user.userId)
+        .where("profileId", "==", getters.user.userId)
         .onSnapshot(
-          (doc) => {
-            console.log("action called");
-            console.log(doc);
+          (querySnapshot) => {
+            const userProfile = {
+              id: doc.id,
+              profileId: doc.data().profileId,
+              displayName: doc.data().displayName,
+              hoursToMakeUp: doc.data().hoursToMakeUp,
+            };
+            commit("SET_USER_PROFILE", userProfile);
+            commit("SET_LOADING", false);
+            console.log(querySnapshot.docs[0].data());
           },
           (err) => {
             commit("SET_LOADING", true);

@@ -34,7 +34,7 @@ export default {
             .add({
               displayName: payload.username,
               email: payload.email,
-              userId: user.uid,
+              profileId: user.uid,
               hoursToMakeUp: 0,
             })
             .then(() => {
@@ -64,7 +64,7 @@ export default {
         .then((user) => {
           const signedInUser = {
             email: user.user.email,
-            id: user.user.uid,
+            userId: user.user.uid,
           };
           commit("SET_USER", signedInUser);
           commit("SET_LOADING", false);

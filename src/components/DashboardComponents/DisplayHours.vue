@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-card class="hours-card text-center" :loading="loading">
+  <div id="hoursDisplay">
+    <v-card class="hours-display-card text-center" :loading="loading">
       <template slot="progress">
         <v-progress-linear indeterminate color="blue" height="10">
         </v-progress-linear>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style scoped>
-.hours-card {
+.hours-display-card {
   width: 55%;
   margin: 2% auto;
 }

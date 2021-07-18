@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div id="lost-pay-calculator" class="text-center">
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="green" dark v-bind="attrs" v-on="on" elevation="0" block>
@@ -10,13 +10,12 @@
 
       <v-card>
         <v-card-title class="lost-wages-display"
-          >You're losing: $
+          >You're losing: <v-icon left>$</v-icon>
           <div id="lostWagesDisplay">
             {{ productToDisplay }}
           </div>
-
-          !!</v-card-title
-        >
+          <v-icon right>!!</v-icon>
+        </v-card-title>
         <v-card-text>
           <v-form ref="form">
             <v-flex xs12 sm12 md12 lg12 xl12

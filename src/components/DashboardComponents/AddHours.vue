@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <v-card class="increment-card">
+  <div id="addHoursForm">
+    <v-card class="add-hours-card">
       <v-card-title>
         <v-icon left>mdi-plus</v-icon>
         Add hours:
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
-          <v-text-field type="number" v-model="hoursToAdd"></v-text-field>
+          <v-text-field
+            id="hoursToAddTextField"
+            type="number"
+            v-model="hoursToAdd"
+          ></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions>
@@ -17,6 +21,7 @@
           @click.prevent="addHours"
           :loading="loading"
           :disabled="tooFewHoursToAdd || loading"
+          elevation="0"
         >
           <v-icon left>mdi-check-bold</v-icon>
           Add Hours
@@ -28,7 +33,7 @@
 
 <script>
 export default {
-  name: "HoursIncrementForm",
+  name: "AddHoursForm",
 
   props: {
     hoursToMakeUp: {
@@ -78,7 +83,7 @@ export default {
 </script>
 
 <style scoped>
-.increment-card {
+.add-hours-card {
   width: 55%;
   margin: 2% auto;
 }

@@ -2,11 +2,9 @@
   <div id="dashboard">
     <v-layout row v-if="error">
       <v-flex xs12 sm12 md12 lg12 xl12>
-        <app-alert @dismissed="onDismissed" :v-text="error.message"></app-alert>
+        <app-alert @dismissed="onDismissed" :v-text="error"></app-alert>
       </v-flex>
     </v-layout>
-
-    {{ userProfile[0].id }}
 
     <DisplayHours :userProfile="userProfile[0]" />
 

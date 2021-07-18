@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-card class="decrement-hours">
+  <div id="removeHoursForm">
+    <v-card class="remove-hours-card ">
       <v-card-title>
         <v-icon left>mdi-minus</v-icon>
         Remove Hours:
@@ -8,7 +8,7 @@
       <v-card-text>
         <v-form ref="form">
           <v-text-field
-            id="hoursToRemove"
+            id="hoursToRemoveTextField"
             type="number"
             v-model="hoursToRemove"
           ></v-text-field>
@@ -16,9 +16,12 @@
       </v-card-text>
       <v-card-actions>
         <v-btn
+          id="removeHoursButton"
+          class="remove-hours-button"
           @click.prevent="removeHours"
           :loading="loading"
           :disabled="tooFewHoursToRemove || loading"
+          elevation="0"
         >
           <v-icon left>mdi-check-bold</v-icon>
           Remove Hours
@@ -30,7 +33,7 @@
 
 <script>
 export default {
-  name: "DecrementHoursForm",
+  name: "RemoveHoursForm",
 
   props: {
     hoursToMakeUp: {
@@ -80,7 +83,7 @@ export default {
 </script>
 
 <style scoped>
-.decrement-hours {
+.remove-hours-card {
   width: 55%;
   margin: 2% auto;
 }

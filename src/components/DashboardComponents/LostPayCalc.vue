@@ -8,7 +8,7 @@
         >
       </template>
 
-      <v-card>
+      <v-card class="lost-pay-display-card">
         <v-card-title class="lost-wages-display"
           >You're losing: <v-icon left>$</v-icon>
           <div id="lostWagesDisplay">
@@ -29,12 +29,17 @@
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-btn @click.prevent="onClose" elevation="0" dark>
+          <v-btn @click.prevent="onClose" elevation="0" color="red" dark>
             <v-icon left>mdi-cancel</v-icon>
-            Cancel</v-btn
+            Close</v-btn
           >
           <v-spacer></v-spacer>
-          <v-btn @click.prevent="calcWagesLost" elevation="0" dark>
+          <v-btn
+            @click.prevent="calcWagesLost"
+            elevation="0"
+            color="green"
+            dark
+          >
             <v-icon left>mdi-calculator</v-icon>
             Calculate</v-btn
           >
@@ -84,4 +89,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.lost-pay-display-card {
+  border: 3px solid green;
+  color: green;
+}
+</style>

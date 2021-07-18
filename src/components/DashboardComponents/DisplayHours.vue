@@ -1,6 +1,10 @@
 <template>
   <div id="hoursDisplay">
-    <v-card class="hours-display-card text-center" :loading="loading">
+    <v-card
+      class="hours-display-card text-center"
+      :class="setDisplayColors()"
+      :loading="loading"
+    >
       <template slot="progress">
         <v-progress-linear indeterminate color="blue" height="10">
         </v-progress-linear>
@@ -12,7 +16,12 @@
       </v-card-title>
 
       <v-card-text>
-        <h2>Hours remaining: {{ userProfile.hoursToMakeUp }}</h2>
+        <h2>
+          Hours remaining:
+        </h2>
+        <h2 :class="setDisplayColors()">
+          {{ userProfile.hoursToMakeUp }}
+        </h2>
       </v-card-text>
 
       <v-card-actions>
@@ -44,6 +53,20 @@ export default {
       return this.$store.getters.loading;
     },
   },
+
+  methods: {
+    setDisplayColors() {
+      let colorDeterminate = this.userProfile.hoursToMakeUp;
+
+      if (colorDeterminate > 3) {
+        return "not-going-to-make-it";
+      } else if (colorDeterminate == 3 || colorDeterminate >= 1) {
+        return "can-see-the-light";
+      } else {
+        return "made-it";
+      }
+    },
+  },
 };
 </script>
 
@@ -51,5 +74,22 @@ export default {
 .hours-display-card {
   width: 55%;
   margin: 2% auto;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.not-going-to-make-it {
+  border-color: red;
+  color: red;
+}
+
+.can-see-the-light {
+  border-color: green;
+  color: green;
+}
+
+.made-it {
+  border-color: skyblue;
+  color: skyblue;
 }
 </style>

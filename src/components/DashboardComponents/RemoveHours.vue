@@ -22,8 +22,10 @@
           :loading="loading"
           :disabled="tooFewHoursToRemove || loading"
           elevation="0"
+          color="blue"
+          dark
         >
-          <v-icon left>mdi-check-bold</v-icon>
+          <v-icon left>mdi-minus</v-icon>
           Remove Hours
         </v-btn>
       </v-card-actions>

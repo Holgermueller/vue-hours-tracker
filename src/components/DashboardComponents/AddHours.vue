@@ -22,8 +22,10 @@
           :loading="loading"
           :disabled="tooFewHoursToAdd || loading"
           elevation="0"
+          color="blue"
+          dark
         >
-          <v-icon left>mdi-check-bold</v-icon>
+          <v-icon left>+</v-icon>
           Add Hours
         </v-btn>
       </v-card-actions>

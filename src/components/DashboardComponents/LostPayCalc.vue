@@ -9,8 +9,13 @@
       </template>
 
       <v-card>
-        <v-card-title id="lostWagesDisplay" class="lost-wages-display"
-          >You're losing: $ {{ productToDisplay }} !!</v-card-title
+        <v-card-title class="lost-wages-display"
+          >You're losing: $
+          <div id="lostWagesDisplay">
+            {{ productToDisplay }}
+          </div>
+
+          !!</v-card-title
         >
         <v-card-text>
           <v-form ref="form">
@@ -74,7 +79,7 @@ export default {
 
       let productToDisplay = hourlyWage * this.hoursToMakeUp;
 
-      return productToDisplay;
+      document.getElementById("lostWagesDisplay").innerHTML = productToDisplay;
     },
   },
 };

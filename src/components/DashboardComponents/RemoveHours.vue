@@ -1,25 +1,27 @@
 <template>
   <div>
-    <v-card class="increment-card">
+    <v-card class="decrement-hours">
       <v-card-title>
-        <v-icon left>mdi-plus</v-icon>
-        Add hours:
+        <v-icon left>mdi-minus</v-icon>
+        Remove Hours:
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
-          <v-text-field type="number" v-model="hoursToAdd"></v-text-field>
+          <v-text-field
+            id="hoursToRemove"
+            type="number"
+            v-model="hoursToRemove"
+          ></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions>
         <v-btn
-          id="addHoursButton"
-          class="add-hours-button"
-          @click.prevent="addHours"
+          @click.prevent="removeHours"
           :loading="loading"
-          :disabled="tooFewHoursToAdd || loading"
+          :disabled="tooFewHoursToRemove || loading"
         >
           <v-icon left>mdi-check-bold</v-icon>
-          Add Hours
+          Remove Hours
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -28,16 +30,11 @@
 
 <script>
 export default {
-  name: "HoursIncrementForm",
+  name: "DecrementHoursForm",
 
   props: {
     hoursToMakeUp: {
       type: Number,
-      required: true,
-    },
-
-    profileId: {
-      type: String,
       required: true,
     },
 
@@ -49,16 +46,16 @@ export default {
 
   data() {
     return {
-      hoursToAdd: 1,
+      hoursToRemove: 1,
     };
   },
 
   computed: {
-    tooFewHoursToAdd() {
+    tooFewHoursToRemove() {
       return (
-        this.hoursToAdd <= 0 ||
-        this.hoursToAdd == undefined ||
-        this.hoursToAdd == null
+        this.hoursToRemove <= 0 ||
+        this.hoursToRemove == null ||
+        this.hoursToRemove == undefined
       );
     },
 
@@ -68,14 +65,14 @@ export default {
   },
 
   methods: {
-    addHours() {
+    removeHours() {
       let baseHours = parseInt(this.hoursToMakeUp);
 
-      let newHours = baseHours + parseInt(this.hoursToAdd);
+      let newHours = baseHours - parseInt(this.hoursToRemove);
 
-      this.$store.dispatch("addHours", {
+      this.$store.dispatch("removeHours", {
         userProfileId: this.userProfileId,
-        hoursToAdd: newHours,
+        hoursToRemove: newHours,
       });
     },
   },
@@ -83,7 +80,7 @@ export default {
 </script>
 
 <style scoped>
-.increment-card {
+.decrement-hours {
   width: 55%;
   margin: 2% auto;
 }

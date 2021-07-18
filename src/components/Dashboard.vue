@@ -10,15 +10,13 @@
 
     <DisplayHours :userProfile="userProfile[0]" />
 
-    <IncrementHoursForm
+    <AddHoursForm
       :hoursToMakeUp="userProfile[0].hoursToMakeUp"
-      :profileId="userProfile[0].profileId"
       :userProfileId="userProfile[0].userProfileId"
     />
 
-    <DecrementHoursForm
+    <RemoveHoursForm
       :hoursToMakeUp="userProfile[0].hoursToMakeUp"
-      :profileId="userProfile[0].profileId"
       :userProfileId="userProfile[0].userProfileId"
     />
   </div>
@@ -26,16 +24,16 @@
 
 <script>
 import DisplayHours from "./DashboardComponents/DisplayHours.vue";
-import IncrementHoursForm from "./DashboardComponents/IncrementHours.vue";
-import DecrementHoursForm from "./DashboardComponents/DecrementHours.vue";
+import AddHoursForm from "./DashboardComponents/AddHours.vue";
+import RemoveHoursForm from "./DashboardComponents/RemoveHours.vue";
 
 export default {
   name: "DashboardPage",
 
   components: {
-    IncrementHoursForm,
+    AddHoursForm,
     DisplayHours,
-    DecrementHoursForm,
+    RemoveHoursForm,
   },
 
   created() {

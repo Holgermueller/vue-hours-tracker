@@ -94,7 +94,7 @@ export default {
           hoursToMakeUp: payload.hoursToRemove,
         })
         .then(() => {
-          commit("ADD_HOURS", payload);
+          commit("REMOVE_HOURS", payload);
           commit("SET_LOADING", false);
         })
         .catch((err) => {

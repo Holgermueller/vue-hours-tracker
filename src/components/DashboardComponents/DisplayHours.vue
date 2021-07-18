@@ -15,16 +15,22 @@
         <h2>Hours remaining: {{ userProfile.hoursToMakeUp }}</h2>
       </v-card-text>
 
-      <v-card-actions> </v-card-actions>
+      <v-card-actions>
+        <LostPayCalculator :hoursToMakeUp="userProfile.hoursToMakeUp" />
+      </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
+import LostPayCalculator from "./LostPayCalc.vue";
+
 export default {
   name: "HoursDisplay",
 
-  components: {},
+  components: {
+    LostPayCalculator,
+  },
 
   props: {
     userProfile: {

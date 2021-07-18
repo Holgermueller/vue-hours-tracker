@@ -15,7 +15,7 @@ export default {
         return thisProfile.id === payload.userProfileId;
       });
 
-      if (payload.hoursToAdd) {
+      if (payload.hoursToMakeUp) {
         hoursToEdit.hoursToMakeUp = payload.hoursToAdd;
       }
     },
@@ -25,7 +25,7 @@ export default {
         return thisProfile.id === payload.userProfileId;
       });
 
-      if (payload.hoursToRemove) {
+      if (payload.hoursToMakeUp) {
         hoursToEdit.hoursToMakeUp = payload.hoursToRemove;
       }
     },
@@ -65,7 +65,6 @@ export default {
 
     addHours({ commit }, payload) {
       commit("SET_LOADING", true);
-      commit("CLEAR_ERROR");
 
       firebase
         .collection("userProfiles")
@@ -85,7 +84,6 @@ export default {
 
     removeHours({ commit }, payload) {
       commit("SET_LOADING", true);
-      commit("CLEAR_ERROR");
 
       firebase
         .collection("userProfiles")

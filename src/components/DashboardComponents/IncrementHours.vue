@@ -3,7 +3,7 @@
     <v-card class="increment-card">
       <v-card-title>
         <v-icon left>mdi-plus</v-icon>
-        Add hours: {{ hoursToMakeUp }}
+        Add hours:
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -41,7 +41,7 @@ export default {
       required: true,
     },
 
-    id: {
+    userProfileId: {
       type: String,
       required: true,
     },
@@ -74,7 +74,7 @@ export default {
       let newHours = baseHours + parseInt(this.hoursToAdd);
 
       this.$store.dispatch("addHours", {
-        profileId: this.profileId,
+        userProfileId: this.userProfileId,
         hoursToAdd: newHours,
       });
     },

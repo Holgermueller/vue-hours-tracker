@@ -3,7 +3,7 @@
     <v-card class="decrement-hours">
       <v-card-title>
         <v-icon left>mdi-minus</v-icon>
-        Remove Hours {{ hoursToMakeUp }}
+        Remove Hours:
       </v-card-title>
       <v-card-text>
         <v-form ref="form">
@@ -42,6 +42,11 @@ export default {
       type: String,
       required: true,
     },
+
+    userProfileId: {
+      type: String,
+      required: true,
+    },
   },
 
   data() {
@@ -66,7 +71,14 @@ export default {
 
   methods: {
     removeHours() {
-      console.log(this.hoursToRemove);
+      let baseHours = parseInt(this.hoursToMakeUp);
+
+      let newHours = baseHours - parseInt(this.hoursToRemove);
+
+      this.$store.dispatch("removeHours", {
+        userProfileId: this.userProfileId,
+        hoursToRemove: newHours,
+      });
     },
   },
 };

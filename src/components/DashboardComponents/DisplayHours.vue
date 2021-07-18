@@ -14,6 +14,8 @@
       <v-card-text>
         <h2>Hours remaining: {{ userProfile.hoursToMakeUp }}</h2>
       </v-card-text>
+
+      <v-card-actions> </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -21,6 +23,8 @@
 <script>
 export default {
   name: "HoursDisplay",
+
+  components: {},
 
   props: {
     userProfile: {

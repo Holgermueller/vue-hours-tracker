@@ -11,22 +11,22 @@ export default {
     },
 
     ADD_HOURS(state, payload) {
-      const hoursToEdit = state.userHours.find((theseHours) => {
-        return theseHours.id === payload.profileId;
+      const hoursToEdit = state.userProfile.find((thisProfile) => {
+        return thisProfile.id === payload.userProfileId;
       });
 
       if (payload.hoursToAdd) {
-        hoursToEdit.userHours = payload.hoursToAdd;
+        hoursToEdit.hoursToMakeUp = payload.hoursToAdd;
       }
     },
 
     REMOVE_HOURS(state, payload) {
-      const hoursToEdit = state.userHours.find((theseHours) => {
-        return theseHours.id === payload.profileId;
+      const hoursToEdit = state.userProfile.find((thisProfile) => {
+        return thisProfile.id === payload.userProfileId;
       });
 
       if (payload.hoursToRemove) {
-        hoursToEdit.userHours = payload.hoursToRemove;
+        hoursToEdit.hoursToMakeUp = payload.hoursToRemove;
       }
     },
   },
@@ -45,7 +45,7 @@ export default {
 
             querySnapshot.forEach((doc) => {
               const profileData = {
-                id: doc.id,
+                userProfileId: doc.id,
                 profileId: doc.data().profileId,
                 displayName: doc.data().displayName,
                 hoursToMakeUp: doc.data().hoursToMakeUp,
@@ -69,7 +69,7 @@ export default {
 
       firebase
         .collection("userProfiles")
-        .doc(payload.profileId)
+        .doc(payload.userProfileId)
         .update({
           hoursToMakeUp: payload.hoursToAdd,
         })
@@ -89,7 +89,7 @@ export default {
 
       firebase
         .collection("userProfiles")
-        .doc(payload.profileId)
+        .doc(payload.userProfileId)
         .update({
           hoursToMakeUp: payload.hoursToRemove,
         })

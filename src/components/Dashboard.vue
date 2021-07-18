@@ -6,17 +6,20 @@
       </v-flex>
     </v-layout>
 
+    {{ userProfile[0].id }}
+
     <DisplayHours :userProfile="userProfile[0]" />
 
     <IncrementHoursForm
       :hoursToMakeUp="userProfile[0].hoursToMakeUp"
       :profileId="userProfile[0].profileId"
+      :userProfileId="userProfile[0].userProfileId"
     />
 
     <DecrementHoursForm
       :hoursToMakeUp="userProfile[0].hoursToMakeUp"
       :profileId="userProfile[0].profileId"
-      :id="userProfile[0].id"
+      :userProfileId="userProfile[0].userProfileId"
     />
   </div>
 </template>

@@ -21,15 +21,32 @@
               outlined
             ></v-text-field
           ></v-flex>
+
           <v-flex xs12 sm12 md12 lg12 xl12
             ><v-text-field
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
               v-model="password"
               label="Password"
               prepend-icon="mdi-lock"
               outlined
             ></v-text-field
           ></v-flex>
+
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <p v-if="errorFromDom" id="errorFromDom" class="error-from-dom">
+              {{ errorFromDom }}
+            </p>
+          </v-flex>
+
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <p id="forgotPasswordLink">
+              <a href="/forgotPassword" class="forgot-password-link"
+                >Forgot password?</a
+              >
+            </p>
+          </v-flex>
         </v-form>
       </v-card-text>
 
@@ -62,6 +79,10 @@ export default {
     return {
       email: "",
       password: "",
+      showPassword: false,
+      currentUser: false,
+      userId: null,
+      errorFromDom: "",
     };
   },
 
@@ -89,18 +110,43 @@ export default {
 
   methods: {
     checkLoginForm() {
+      if (!this.email && !this.password) {
+        this.errorFromDom = "Please fill out both of the fields";
+      } else if (!this.email) {
+        this.errorFromDom = "Please provide your email to log in.";
+      } else if (!this.password) {
+        this.errorFromDom = "Please provide your password to log in.";
+      } else {
+        this.logInUser();
+        this.clearForm();
+      }
+    },
+
+    logInUser() {
       this.$store.dispatch("loginUser", {
         email: this.email,
         password: this.password,
       });
-      this.clearForm();
     },
 
     clearForm() {
       this.$refs.form.reset();
     },
+
+    onDismissed() {
+      this.$store.dispatch("clearError");
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.error-from-dom {
+  color: red;
+}
+
+.forgot-password-link {
+  color: blue;
+  text-decoration: none;
+}
+</style>

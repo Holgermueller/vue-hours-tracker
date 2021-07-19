@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import firebase from "firebase";
 import Home from "../components/index";
 import Dashboard from "../components/Dashboard";
+import ForgotPassword from "../components/ForgotPassword";
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,12 @@ let router = new VueRouter({
       meta: {
         requiresAuth: true,
       },
+    },
+
+    {
+      path: "/forgotPassword",
+      name: "ForgotPassword",
+      component: ForgotPassword,
     },
   ],
 });

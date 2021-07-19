@@ -87,6 +87,18 @@ export default {
     logout({ commit }) {
       commit("SET_LOADING", true);
       commit("CLEAR_ERROR");
+
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          commit("SET_USER", null);
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
     },
   },
 

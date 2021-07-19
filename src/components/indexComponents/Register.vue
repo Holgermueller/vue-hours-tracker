@@ -14,6 +14,7 @@
         <v-form ref="form">
           <v-flex xs12 sm12 md12 lg12 xl12
             ><v-text-field
+              type="text"
               v-model="username"
               label="Username"
               prepend-icon="mdi-account-circle"
@@ -23,6 +24,7 @@
 
           <v-flex xs12 sm12 md12 lg12 xl12
             ><v-text-field
+              type="email"
               v-model="email"
               label="Email"
               prepend-icon="mdi-email"
@@ -32,6 +34,9 @@
 
           <v-flex xs12 sm12 md12 lg12 xl12
             ><v-text-field
+              :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
               v-model="password"
               label="Password"
               prepend-icon="mdi-lock"
@@ -41,12 +46,21 @@
 
           <v-flex xs12 sm12 md12 lg12 xl12
             ><v-text-field
+              :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
               v-model="confirmPassword"
               label="Confirm Password"
               prepend-icon="mdi-lock"
               outlined
             ></v-text-field
           ></v-flex>
+
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <p v-if="errorFromDOM" id="errorFromDom" class="error-from-dom">
+              {{ errorFromDOM }}
+            </p>
+          </v-flex>
         </v-form>
       </v-card-text>
 
@@ -79,6 +93,10 @@ export default {
       email: "",
       password: "",
       confirmPassword: "",
+      showPassword: false,
+      currentUser: false,
+      userId: null,
+      errorFromDOM: "",
     };
   },
 
@@ -106,6 +124,30 @@ export default {
 
   methods: {
     checkForm() {
+      if (
+        !this.username &&
+        !this.email &&
+        !this.password &&
+        !this.confirmPassword
+      ) {
+        this.errorFromDOM = "You must fill out all the fields";
+      } else if (!this.username) {
+        this.errorFromDOM = "Please provide a username to register";
+      } else if (!this.email) {
+        this.errorFromDOM = "Please provide an email to register";
+      } else if (!this.password) {
+        this.errorFromDOM = "Please provide a password to register";
+      } else if (!this.confirmPassword) {
+        this.errorFromDOM = "Please confirm your password to log in";
+      } else if (!this.password !== this.confirmPassword) {
+        this.errorFromDOM = "Passwords do not match";
+      } else {
+        this.registerUser();
+        this.clearForm();
+      }
+    },
+
+    registerUser() {
       this.$store.dispatch("registerUser", {
         email: this.email,
         password: this.password,
@@ -124,4 +166,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.error-from-dom {
+  color: red;
+}
+</style>

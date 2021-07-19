@@ -103,6 +103,17 @@ export default {
 
     resetPassword({ commit }) {
       commit("SET_LOADING", true);
+
+      firebase
+        .auth()
+        .sendPasswordResetEmail()
+        .then(() => {
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
     },
   },
 

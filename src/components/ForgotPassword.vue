@@ -32,7 +32,7 @@
           </v-flex>
 
           <v-flex xs12 sm12 md12 lg12 xl12>
-            <p v-if="success" id="success" class="success">
+            <p v-if="success" id="success" class="success-message">
               {{ success }}
             </p>
           </v-flex>
@@ -40,7 +40,14 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn elevation="0" @click.prevent="checkForm">
+        <v-btn
+          elevation="0"
+          @click.prevent="checkForm"
+          :loading="loading"
+          :disabled="loading"
+          color="primary"
+          dark
+        >
           Reset Password
           <v-icon right>mdi-login</v-icon>
         </v-btn>
@@ -64,7 +71,7 @@ export default {
 
   computed: {
     loading() {
-      return this.$store.getters.loading();
+      return this.$store.getters.loading;
     },
   },
 
@@ -76,7 +83,7 @@ export default {
         this.errorFromDom = "Please provide your email";
       } else if (!this.confirmEmail) {
         this.errorFromDom = "Please confirm your email";
-      } else if (!this.email !== this.confirmEmail) {
+      } else if (this.email !== this.confirmEmail) {
         this.errorFromDom = "The emails you provided do not match";
       } else {
         this.resetPassword();
@@ -85,7 +92,7 @@ export default {
     },
 
     resetPassword() {
-      this.success = "Success!!";
+      this.success = "Success!! Check your email to reset password!";
     },
 
     clearForm() {
@@ -105,7 +112,7 @@ export default {
   color: red;
 }
 
-.success {
+.success-message {
   color: green;
 }
 </style>

@@ -100,6 +100,10 @@ export default {
           commit("SET_ERROR", err);
         });
     },
+
+    resetPassword({ commit }) {
+      commit("SET_LOADING", true);
+    },
   },
 
   getters: {

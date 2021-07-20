@@ -51,7 +51,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn @click.prevent="clearForm" elevation="0">
+        <v-btn @click.prevent="clearForm" elevation="0" color="red" dark>
           <v-icon left>mdi-cancel</v-icon>
           Cancel</v-btn
         >
@@ -63,6 +63,8 @@
           :loading="loading"
           :disabled="loading"
           elevation="0"
+          color="blue"
+          dark
           >Submit
           <v-icon right>mdi-login</v-icon>
         </v-btn>

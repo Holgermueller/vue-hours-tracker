@@ -39,7 +39,6 @@ export default {
             })
             .then(() => {
               commit("SET_LOADING", false);
-              console.log("Profile created");
             })
             .catch((err) => {
               commit("SET_LOADING", false);
@@ -101,13 +100,14 @@ export default {
         });
     },
 
-    resetPassword({ commit }) {
+    resetPassword({ commit }, payload) {
       commit("SET_LOADING", true);
 
       firebase
         .auth()
-        .sendPasswordResetEmail()
+        .sendPasswordResetEmail(payload.email)
         .then(() => {
+          console.log("email sent");
           commit("SET_LOADING", false);
         })
         .catch((err) => {

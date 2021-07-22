@@ -73,11 +73,17 @@ export default {
     removeHours() {
       let baseHours = parseInt(this.hoursToMakeUp);
 
-      let newHours = baseHours - parseInt(this.hoursToRemove);
+      let hoursToRemove = parseInt(this.hoursToRemove);
+
+      let newHours = baseHours - hoursToRemove;
+
+      let hoursToSubmit = newHours < 0 ? 0 : newHours;
+
+      console.log(hoursToSubmit);
 
       this.$store.dispatch("removeHours", {
         userProfileId: this.userProfileId,
-        hoursToRemove: newHours,
+        hoursToRemove: hoursToSubmit,
       });
     },
   },

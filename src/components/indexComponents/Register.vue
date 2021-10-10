@@ -159,6 +159,10 @@ export default {
 
     clearForm() {
       this.$ref.form.reset();
+      this.username = "";
+      this.email = "";
+      this.password = "";
+      this.confirmPassword = "";
     },
 
     onDismissed() {
